@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 
 namespace eTickets.Data.Repository.Base
@@ -33,24 +34,22 @@ namespace eTickets.Data.Repository.Base
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public async Task<IEnumerable<T>> GetAllAsync() => await _context.Set<T>().ToListAsync();
+
+        public async Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T, object>>[] includeProperties)
         {
-            return await _context.Set<T>().ToListAsync();
+            IQueryable<T> values = _context.Set<T>();
+            values = includeProperties.Aggregate(values, (current, includeProperty) => current.Include(includeProperty));
+            return await values.ToListAsync();
         }
 
-        public Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T, object>>[] includeProperties)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<T> GetByIdAsync(int id) => await _context.Set<T>().FirstOrDefaultAsync(n => n.Id == id);
 
-        public async Task<T> GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync(int id, params Expression<Func<T, object>>[] includeProperties)
         {
-            return await _context.Set<T>().FirstOrDefaultAsync(n => n.Id == id);
-        }
-
-        public Task<T> GetByIdAsync(int id, params Expression<Func<T, object>>[] includeProperties)
-        {
-            throw new NotImplementedException();
+            IQueryable<T> values = _context.Set<T>();
+            values = includeProperties.Aggregate(values, (current, includeProperty) => current.Include(includeProperty));
+            return await values.FirstOrDefaultAsync(n => n.Id == id);
         }
 
         public async Task UpdateAsync(int id, T entity)

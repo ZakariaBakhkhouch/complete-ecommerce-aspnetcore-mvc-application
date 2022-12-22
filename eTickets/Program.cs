@@ -18,7 +18,7 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(cs))
 builder.Services.AddScoped<IActorsRepository, ActorRepository>();
 builder.Services.AddScoped<IProducersRepository, ProducersRepository>();
 builder.Services.AddScoped<ICinemasRepository, CinemasRepository>();
-//builder.Services.AddScoped<IActorsRepository, ActorRepository>();
+builder.Services.AddScoped<IMoviesRepository, MoviesRepository>();
 
 
 var app = builder.Build();
