@@ -1,7 +1,7 @@
 ﻿using eTickets.Data;
-using eTickets.Data.Repository;
-using eTickets.Data.Repository.Base;
+using eTickets.Repository.Base;
 using eTickets.Models;
+using eTickets.Repository;
 
 namespace eTickets.Controllers
 {

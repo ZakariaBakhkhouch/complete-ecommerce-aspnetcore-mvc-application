@@ -1,7 +1,7 @@
-﻿using eTickets.Data.Repository.Base;
+﻿using eTickets.Repository.Base;
 using eTickets.Models;
 
-namespace eTickets.Data.Repository
+namespace eTickets.Repository
 {
     public interface ICinemasRepository : IEntityBaseRepository<Cinema>
     {

@@ -1,8 +1,8 @@
-﻿using eTickets.Data.Repository.Base;
+﻿using eTickets.Repository.Base;
 using eTickets.Models;
 using eTickets.ViewModels;
 
-namespace eTickets.Data.Repository
+namespace eTickets.Repository
 {
     public interface IMoviesRepository : IEntityBaseRepository<Movie>
     {

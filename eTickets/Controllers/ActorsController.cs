@@ -1,6 +1,6 @@
 ﻿using eTickets.Data;
-using eTickets.Data.Repository;
 using eTickets.Models;
+using eTickets.Repository;
 
 namespace eTickets.Controllers
 {

@@ -1,7 +1,9 @@
-﻿using eTickets.Data.Repository.Base;
+﻿using eTickets.Repository.Base;
 using eTickets.Models;
+using eTickets.Data;
 
-namespace eTickets.Data.Repository
+
+namespace eTickets.Repository
 {
     public class ActorRepository : EntityBaseRepository<Actor>, IActorsRepository
     {

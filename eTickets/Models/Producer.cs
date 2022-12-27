@@ -1,4 +1,4 @@
-﻿using eTickets.Data.Repository.Base;
+﻿using eTickets.Repository.Base;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 

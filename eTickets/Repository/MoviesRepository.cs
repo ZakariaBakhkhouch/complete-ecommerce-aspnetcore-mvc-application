@@ -1,10 +1,11 @@
-﻿using eTickets.Data.Enums;
-using eTickets.Data.Repository.Base;
+﻿using eTickets.Data;
+using eTickets.Data.Enums;
 using eTickets.Models;
+using eTickets.Repository.Base;
 using eTickets.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
-namespace eTickets.Data.Repository
+namespace eTickets.Repository
 {
     public class MoviesRepository : EntityBaseRepository<Movie>, IMoviesRepository
     {
@@ -48,7 +49,7 @@ namespace eTickets.Data.Repository
             await _context.SaveChangesAsync();
 
             // add the actor_movie 
-            foreach(var actorId in model.ActorIds)
+            foreach (var actorId in model.ActorIds)
             {
                 var actor_movie = new Actor_Movie
                 {

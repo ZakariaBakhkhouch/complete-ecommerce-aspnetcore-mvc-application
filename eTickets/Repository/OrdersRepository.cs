@@ -1,0 +1,49 @@
+﻿using eTickets.Models;
+using eTickets.Data;
+
+
+namespace eTickets.Repository
+{
+    public class OrdersRepository : IOrdersRepository
+    {
+        private readonly AppDbContext _context;
+
+        public OrdersRepository(AppDbContext context)
+        {
+            _context= context;
+        }
+        public async Task<List<Order>> GetOrdersByUserIdAndRoleAsync(string userId, string userRole)
+        {
+            var orders = await _context.Orders.Include(n => n.OrderItems).ThenInclude(n => n.Movie).ToListAsync();
+
+            if (userRole != "Admin")
+            {
+                orders = orders.Where(n => n.UserId == userId).ToList();
+            }
+            return orders;
+        }
+
+        public async Task StoreOrderAsync(List<ShoppingCartItem> shoppingCartItems, string userId, string userEmail)
+        {
+            var order = new Order
+            {
+                UserId = userId,
+                Email = userEmail
+            };
+            await _context.Orders.AddAsync(order);
+            await _context.SaveChangesAsync();
+            foreach (var item in shoppingCartItems)
+            {
+                var orderItem = new OrderItem()
+                {
+                    Amount = item.Amount,
+                    MovieId = item.Movie.Id,
+                    OrderId = order.Id,
+                    Price = item.Movie.Price
+                };
+                await _context.OrderItems.AddAsync(orderItem);
+            }
+            await _context.SaveChangesAsync();
+        }
+    }
+}

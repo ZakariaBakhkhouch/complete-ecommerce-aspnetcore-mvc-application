@@ -1,4 +1,4 @@
-﻿namespace eTickets.Data.Repository.Base
+﻿namespace eTickets.Repository.Base
 {
     public interface IEntityBase
     {

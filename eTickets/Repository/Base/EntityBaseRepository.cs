@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using eTickets.Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 
-namespace eTickets.Data.Repository.Base
+namespace eTickets.Repository.Base
 {
     public class EntityBaseRepository<T> : IEntityBaseRepository<T> where T : class, IEntityBase, new()
     {
