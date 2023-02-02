@@ -7,16 +7,15 @@
       "sslPort": 44356
     }
   },
-
-  "IIS Express": {
-    "commandName": "IISExpress",
-    "dotnetRunMessages": true,
-    "launchUrl": "",
-    "environmentVariables": {
-      "ASPNETCORE_ENVIRONMENT": "Development"
-    }
-  },
   "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "dotnetRunMessages": true,
+      "launchUrl": "",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
     "eTickets": {
       "commandName": "Project",
       "dotnetRunMessages": true,
