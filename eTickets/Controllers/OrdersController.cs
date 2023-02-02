@@ -23,7 +23,10 @@ namespace eTickets.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var orders =  await _ordersRepository.GetOrdersByUserIdAsync("");
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string userRole = User.FindFirstValue(ClaimTypes.Role);
+
+            var orders =  await _ordersRepository.GetOrdersByUserIdAndRoleAsync(userId, userRole);
             return View(orders);
         }
 
@@ -75,8 +78,8 @@ namespace eTickets.Controllers
         public async Task<IActionResult> CompleteOrder()
         {
             var items = _shoppingCart.GetShoppingCartItems();
-            string userId = "";// User.FindFirstValue(ClaimTypes.NameIdentifier);
-            string userEmailAddress = "";// User.FindFirstValue(ClaimTypes.Email);
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string userEmailAddress = User.FindFirstValue(ClaimTypes.Email);
 
             await _ordersRepository.StoreOrderAsync(items, userId, userEmailAddress);
             await _shoppingCart.ClearShoppingCartAsync();

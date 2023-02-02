@@ -14,7 +14,7 @@ builder.Services.AddControllersWithViews();
 
 
 // configre the App DbContext
-string? cs = builder.Configuration.GetConnectionString(name: "DefaultConnectionString");
+string? cs = builder.Configuration.GetConnectionString(name: "AzureConnectionString");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(cs));
 
 
@@ -63,7 +63,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Movies}/{action=Index}/{id?}");
 
 // seed database
 AppDbInitializer.Seed(app);
