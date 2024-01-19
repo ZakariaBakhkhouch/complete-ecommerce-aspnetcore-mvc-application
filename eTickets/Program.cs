@@ -1,6 +1,4 @@
-using eTickets.Data;
-using eTickets.Models;
-using eTickets.Repository;
+
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -14,7 +12,7 @@ builder.Services.AddControllersWithViews();
 
 
 // configre the App DbContext
-string? cs = builder.Configuration.GetConnectionString(name: "AzureConnectionString");
+string? cs = builder.Configuration.GetConnectionString(name: "DefaultConnectionString");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(cs));
 
 

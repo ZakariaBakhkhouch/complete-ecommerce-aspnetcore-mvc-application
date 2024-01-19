@@ -4,3 +4,6 @@ global using System.ComponentModel.DataAnnotations.Schema;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.AspNetCore.Mvc;
 
+global using eTickets.Data;
+global using eTickets.Models;
+global using eTickets.Repository;
